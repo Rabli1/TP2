@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast-food Sushi</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <script src="https://kit.fontawesome.com/44720d3ccc.js" crossorigin="anonymous"></script>  
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CA:wght@100..400&family=Playwrite+MX:wght@100..400&family=Playwrite+US+Trad:wght@100..400&display=swap" rel="stylesheet">        
-    <link rel="stylesheet" href="public/css/styles.css">
-</head>
+require 'partials/head.php';
+require 'partials/header.php';
 
-<body>
-    <div class="container-fluid ">
-        <header class="text-center my-3">
-            <h1 class="text-logo"><span class="bi-shop"></span> Fast-food Sushi <span class="bi-shop"></span></h1> 
-        </header>
+?>
 
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
@@ -97,7 +84,4 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+<?php require 'partials/footer.php' ?>

@@ -1,25 +1,9 @@
+<?php
 
+require 'partials/head.php';
+require 'partials/header.php';
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast-food Sushi</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <script src="https://kit.fontawesome.com/44720d3ccc.js" crossorigin="anonymous"></script>  
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CA:wght@100..400&family=Playwrite+MX:wght@100..400&family=Playwrite+US+Trad:wght@100..400&display=swap" rel="stylesheet">        
-    <link rel="stylesheet" href="public/css/styles.css">
-</head>
-
-<body>
-    <div class="container-fluid site">
-        <header class="text-center my-3">
-            <h1 class="text-logo"><span class="bi-shop"></span> Fast-food Sushi <span class="bi-shop"></span></h1> 
-        </header>
-
+?>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <button id="nav-toggle-button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,9 +131,7 @@
             </div>
         </main>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    </div>
-</body>
 
-</html>
+<?php require 'partials/footer.php'; ?>
+
