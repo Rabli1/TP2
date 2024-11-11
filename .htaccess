@@ -2,5 +2,3 @@ RewriteEngine On
 
 RewriteRule ^(public) - [L]
 RewriteRule ^(.*) $ index.php [L,QSA]
-
-a
