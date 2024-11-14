@@ -9,39 +9,37 @@ require 'partials/header.php';
             <div class="col-md-6">
                 <h1><strong>Modifier un item</strong></h1>
                 <br>
-                <form class="form" role="form">
+                <form class="form" role="form" method="POST">
                     <input type="hidden" name="id" value="4">
                     <br>
                     <div>
                         <label class="form-label" for="name">Nom:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="Maki de saumon">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?=$item['name'] ?>">
                     </div>
                     <br>
                     <div>
                         <label class="form-label" for="description">Description:</label>
-                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="Saumon, concombre contenu dans une feuille d&#039;algue.">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="<?=$item['description'] ?>">
                     </div>
                     <br>
                     <div>
                         <label class="form-label" for="price">Prix: (en $)</label>
-                        <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Prix" value=9>
+                        <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Prix" value=<?=$item['price'] ?>>
                     </div>
                     <br>
                     <div>
                         <label class="form-label" for="category">Catégorie:</label>
                         <select class="form-control" id="category" name="category">
-                            <option value='1' >Urumakis</option>
-                            <option value='2' >Makis</option>
-                            <option value='3' >Nigiris</option>
-                            <option value='4' >Sashimis</option>
-                            <option value='5' >Poké bols</option>
+                            <?php foreach($categories as $categorie): ?>
+                                <option value="<?=$categorie['id']?>" <?php echo($categorie['id']==$item['idCategory']) ? ("selected"): ""?> > <?=$categorie['name']?></option> 
+                            <?php endforeach; ?>
                         </select>
                     </div>
                    <br>
                     <div>
                         <input type="hidden" id="image" name="image" value=maki_saumon.jpg>
                         <label class="form-label" for="imagePath">Image:</label>
-                        <p id="imagePath">maki_saumon.jpg</p>
+                        <p id="imagePath"><?=$item['image']?></p>
                     </div>
                     <br>
                     <div class="form-actions">
@@ -52,11 +50,11 @@ require 'partials/header.php';
             </div>
             <div class="col-md-6 site">
                 <div class="img-thumbnail">
-                    <img src=public/uploads/maki_saumon.jpg alt="...">
-                    <div class="price">9.00 $</div>
+                    <img src=public/uploads/<?=$item['image']?> alt="photo de <?=$item['name']?>">
+                    <div class="price"><?=$item['price']?> $</div>
                     <div class="caption">
-                    <h4>Maki de saumon</h4>
-                    <p>Saumon, concombre contenu dans une feuille d&#039;algue.</p>
+                    <h4><?=$item['name']?></h4>
+                    <p><?=$item['description']?></p>
                     <a href="#" class="btn btn-order disabled add-to-cart" role="button"><span class="bi-cart-fill"></span> Ajouter au panier</a>
                 </div>
             </div>
