@@ -2,7 +2,10 @@
 
 const ROUTES = [
     '/' => 'index.php',
-    '/items-updates' => 'items-update.php',
+    '/items-update' => 'items-update.php',
+    '/items-view' => 'items-view.php',
+    '/items-delete' => 'items-delete.php',
+    '/items-add' => 'items-add.php',
     '/list-items' => 'list-items.php',
     '/panier-achat' => 'panier-achat.php'
 ];
