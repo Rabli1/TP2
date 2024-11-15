@@ -32,7 +32,7 @@ function UpdateItem(PDO $pdo,array $data ) : bool{
         $stm->bindValue(":id", $data["id"], AM_STR);
         
         return $stm->execute();
-        PDO::PAR
+        
     } catch (PDOException $e) {
                 
         throw new PDOException($e->getMessage(), $e->getCode());
