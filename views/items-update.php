@@ -15,17 +15,17 @@ require 'partials/header.php';
                     <br>
                     <div>
                         <label class="form-label" for="name">Nom:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?=$name?>">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?=$item['name']?>">
                     </div>
                     <br>
                     <div>
                         <label class="form-label" for="description">Description:</label>
-                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="<?=$description ?>">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="<?=$item['description'] ?>">
                     </div>
                     <br>
                     <div>
                         <label class="form-label" for="price">Prix: (en $)</label>
-                        <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Prix" value=<?=$price?>>
+                        <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Prix" value=<?=$item['price']?>>
                     </div>
                     <br>
                     <div>
@@ -38,9 +38,9 @@ require 'partials/header.php';
                     </div>
                    <br>
                     <div>
-                        <input type="hidden" id="image" name="image" value=<?=$image?>>
+                        <input type="hidden" id="image" name="image" value=<?=$item['image']?>>
                         <label class="form-label" for="imagePath">Image:</label>
-                        <p id="imagePath"><?=$image?></p>
+                        <p id="imagePath"><?=$item['image']?></p>
                     </div>
                     <br>
                     <div class="form-actions">
