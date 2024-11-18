@@ -1,4 +1,23 @@
 <?php
+ function getItemsByCategory(PDO $pdo, int $categoryId): array {
+        try {
+            $stmt = $pdo->prepare('SELECT * FROM items WHERE idCategory = :idCategory');
+            $stmt->bindValue(':idCategory', $categoryId, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (empty($items)) {
+                throw new Exception("Aucun item trouvé pour la catégorie ID $categoryId.", 404);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération des items : " . $e->getMessage(), (int) $e->getCode());
+        }
+    }
+
 
 function itemsGetById(PDO $pdo, int $id):array{
 

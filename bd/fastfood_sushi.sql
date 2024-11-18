@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`) VALUES
 (1, 'Pascal', 'Rémillard', 'pascal@clg.qc.ca', '$2y$10$b5.dy8jt21S7phAOvZOTs.XudkhOAqibaKMXflE1rBwoOVOPtoDvu'),
 (2, 'Luc', 'Ledoux', 'luc@clg.qc.ca', '$2y$10$b5.dy8jt21S7phAOvZOTs.XudkhOAqibaKMXflE1rBwoOVOPtoDvu'),
-(3, 'Administrateur', '', 'admin@clg.qc.ca', '$2y$10$b5.dy8jt21S7phAOvZOTs.XudkhOAqibaKMXflE1rBwoOVOPtoDvu');
+(3, 'Administrateur', '', 'admin@clg.qc.ca', '123');
 
 --
 -- Contraintes pour les tables déchargées

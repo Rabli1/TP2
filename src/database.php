@@ -1,5 +1,4 @@
 <?php
-
 function databaseGetPDO(array $dbConfig, array $dbParams)
 {
 
