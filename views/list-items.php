@@ -1,13 +1,9 @@
 <?php
 require 'partials/head.php';
 require 'partials/header.php';
+session_start();
 ?>
-<?php if (isset($_COOKIE['remembered_email'])) {
-    echo "Cookie value: " . $_COOKIE['remembered_email'];
-} else {
-    echo "No cookie found.";
-}
-?>
+
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <button id="nav-toggle-button" class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -64,13 +60,13 @@ require 'partials/header.php';
                         <td><?= number_format($item['price'], 2) ?></td>
                         <td><?= htmlspecialchars($item['category_name']) ?></td>
                         <td width=340>
-                            <form action="/items-view" method="GET" style="display: inline;">
+                            <form action="/items-view" method="POST" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                 <button type="submit" class="btn btn-secondary">
                                     <span class="bi-eye"></span> Voir
                                 </button>
                             </form>
-                            <form action="/items-edit" method="GET" style="display: inline;">
+                            <form action="/items-edit" method="POST" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                 <button type="submit" class="btn btn-primary">
                                     <span class="bi-pencil"></span> Modifier

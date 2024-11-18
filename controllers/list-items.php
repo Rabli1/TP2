@@ -6,7 +6,6 @@ session_start();
 $email = $_SESSION['email'];
 
 if (isset($_GET['logout'])) {
-    session_unset();
     session_destroy();
 
     header('Location: /');

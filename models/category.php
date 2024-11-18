@@ -1,8 +1,8 @@
 <?php
-class Category {
-    public static function getAllCategories(PDO $pdo) {
+     function getAllCategories(PDO $pdo) {
         $stmt = $pdo->query('SELECT * FROM categories');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+<<<<<<< HEAD
     }
 }
 
@@ -42,3 +42,6 @@ function CategoryGetAll(PDO $pdo):array{
     }
 
 }
+=======
+    }
+>>>>>>> 52e8c3d3833e41e7fe88bc8ab52af07b4daf93a6

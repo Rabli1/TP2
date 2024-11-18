@@ -4,7 +4,7 @@ require 'models/items.php';
 require 'src/database.php';
 $pdo = databaseGetPDO(CONFIGURATIONS['database'],DB_PARAMS);
 $item = itemsGetById($pdo,1);
-$categories = Category::getAllCategories($pdo);
+$categories = getAllCategories($pdo);
 
 $itemsByCategory = [];
 foreach ($categories as $category) {
