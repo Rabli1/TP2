@@ -48,7 +48,7 @@ function UpdateItem(PDO $pdo,array $data ) : bool{
         $stm->bindValue(":price", $data["price"], PDO::PARAM_STR);
         $stm->bindValue(":image", $data["image"], PDO::PARAM_STR);
         $stm->bindValue(":idCategory", $data["idCategory"], PDO::PARAM_STR);
-        $stm->bindValue(":id", $data["id"], AM_STR);
+        $stm->bindValue(":id", $data["id"], PDO::PARAM_STR);
         
         return $stm->execute();
         
@@ -59,41 +59,7 @@ function UpdateItem(PDO $pdo,array $data ) : bool{
     }   
 }
 
-function CategoryGetById(PDO $pdo, int $id):array{
 
-    try{
-        $stm = $pdo->prepare('SELECT name FROM categories WHERE id=:id');
-
-        $stm->bindValue(":id", $id, PDO::PARAM_INT);
-
-        $stm->execute();
-
-        return $stm->fetch(PDO::FETCH_ASSOC);
-
-    } catch(PDOException $e){
-
-        throw new PDOException($e->getMessage(), $e->getCode());
-
-    }
-
-}
-
-function CategoryGetAll(PDO $pdo):array{
-
-    try{
-        $stm = $pdo->prepare('SELECT id,name FROM categories');
-
-        $stm->execute();
-
-        return $stm->fetchAll(PDO::FETCH_ASSOC);
-
-    } catch(PDOException $e){
-
-        throw new PDOException($e->getMessage(), $e->getCode());
-
-    }
-
-}
 
 
 /*function servicePictureGetAll(PDO $pdo)

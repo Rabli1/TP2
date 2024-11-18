@@ -2,12 +2,13 @@
 
 require 'src/database.php';
 require 'models/items.php';
+require 'models/category.php';
 
 $pdo = databaseGetPDO(CONFIGURATIONS['database'],DB_PARAMS);
 $item = itemsGetById($pdo,1);
 $categories = CategoryGetAll($pdo);
 
-$id = $item['id'];
+$id = 1;
 $name = $item['name'];
 $description = $item['description'];
 $price = $item['price'];
@@ -22,25 +23,29 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $description = trim($_POST['description']) ?? '';
     $price = trim($_POST['price']) ?? '';
     $image = trim($_POST['image']) ?? ''; // non nécessaire mais disponible si modification du html
-    $idCategory = $_POST['idCategory'] ?? '';
-    $message = 'La modification doit prendre de nouvelle valeur';
+    $idCategory = $_POST['category'] ?? '';
+    $message = 'La modification doit prendre de nouvelles valeurs';
+    $class = 'alert alert-danger';
 
-    if($item['name'] != $name || $item['description'] != $description || $item['price'] != $price || $item['image'] != $image || $item['idCategory'] != $idCategory){
+    if($item['name'] != $name|| $item['description'] != $description || $item['price'] != $price || $item['image'] != $image || $item['idCategory'] != $idCategory){
         
         $message = 'Tous les champs doivent être remplis';
+        $class = 'alert alert-danger';
 
-        if(!empty($id) && !empty($name) && !empty($description) && !empty($price) && !empty($image) && !empty($idCategory)){
+        if(!empty($name) && !empty($description) && !empty($price) && !empty($image)){
             $itemModifie = [
                 "name" => $name,
                 "description" => $description,
                 "price" => $price,
                 "image" => $image,
-                "idCategory" => $idCategory
+                "idCategory" => $idCategory,
+                "id" => $id
             ];
 
-            $message = '';
+            $class = 'alert alert-success';
+            $message = 'modification réussi';
     
-            //UpdateItem($pdo,$itemModifie);
+            UpdateItem($pdo,$itemModifie);
 
         } // vérifier que tous les champs soient remplis
 
