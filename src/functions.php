@@ -29,11 +29,11 @@ function routeToController(string $path): void
 
     if (!$validRouteController) {
         error_log("Route invalide : " . $path);
-<<<<<<< HEAD
+        
         //require __DIR__ . '/../views/page-not-found.php';
-=======
+
         //require views/page-not-found.php;
->>>>>>> 9235782d2a2ffdc2f185a84a57e35de553d0a353
+
     }
 }
 
