@@ -1,63 +1,74 @@
 <?php
-
 require 'src/database.php';
 require 'models/items.php';
 require 'models/category.php';
-<<<<<<< HEAD
-//session_start();
-=======
+
 session_start();
-var_dump($_SESSION);
->>>>>>> 0877779bb114f7ce76e858a9669084b37283c6a5
-$pdo = databaseGetPDO(CONFIGURATIONS['database'],DB_PARAMS);
-$item = itemsGetById($pdo,2);
+
+$pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+    $_SESSION['selected_item_id'] = (int)$_POST['id'];
+}
+
+if (isset($_SESSION['selected_item_id'])) {
+    $id = $_SESSION['selected_item_id'];
+} else {
+    die('Erreur : Aucun ID valide fourni.');
+}
+
+$item = itemsGetById($pdo, $id);
+if (!$item) {
+    die('Erreur : L\'item demandé n\'existe pas.');
+}
+
 $categories = CategoryGetAll($pdo);
 
-$id = 2;
 $name = $item['name'];
 $description = $item['description'];
 $price = $item['price'];
-$image = $item['image']; 
+$image = $item['image'];
 $idCategory = $item['idCategory'];
 
 $message = '';
 $class = '';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $name = trim($_POST['name']) ?? '';
-    $description = trim($_POST['description']) ?? '';
-    $price = trim($_POST['price']) ?? '';
-    $image = trim($_POST['image']) ?? ''; // non nécessaire mais disponible si modification du html
-    $idCategory = $_POST['category'] ?? '';
-    $message = 'La modification doit prendre de nouvelles valeurs';
-    $class = 'alert alert-danger';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_item'])) {
+    $name = trim($_POST['name']);
+    $description = trim($_POST['description']);
+    $price = trim($_POST['price']);
+    $image = trim($_POST['image']);
+    $idCategory = $_POST['category'];
 
-    if($item['name'] != $name|| $item['description'] != $description || $item['price'] != $price || $item['image'] != $image || $item['idCategory'] != $idCategory){
-        
-        $message = 'Tous les champs doivent être remplis';
-        $class = 'alert alert-danger';
-
-        if(!empty($name) && !empty($description) && !empty($price) && !empty($image)){
-            $itemModifie = [
-                "name" => $name,
-                "description" => $description,
-                "price" => $price,
-                "image" => $image,
-                "idCategory" => $idCategory,
-                "id" => $id
+    if (
+        $item['name'] !== $name ||
+        $item['description'] !== $description ||
+        $item['price'] !== $price ||
+        $item['image'] !== $image ||
+        $item['idCategory'] !== $idCategory
+    ) {
+        if (!empty($name) && !empty($description) && !empty($price) && !empty($image) && !empty($idCategory)) {
+            $updatedItem = [
+                'id' => $id,
+                'name' => $name,
+                'description' => $description,
+                'price' => $price,
+                'image' => $image,
+                'idCategory' => $idCategory,
             ];
 
+            UpdateItem($pdo, $updatedItem);
+
+            $message = 'Modification réussie.';
             $class = 'alert alert-success';
-            $message = 'modification réussi';
-    
-            UpdateItem($pdo,$itemModifie);
-
-        } // vérifier que tous les champs soient remplis
-
-
-    } // vérifier que au moins une donnée est différente de l'item de base
-
-
+        } else {
+            $message = 'Tous les champs doivent être remplis.';
+            $class = 'alert alert-danger';
+        }
+    } else {
+        $message = 'Aucune modification détectée.';
+        $class = 'alert alert-warning';
+    }
 }
 
 require 'views/items-update.php';
