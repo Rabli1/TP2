@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
                                         <h4><?= htmlspecialchars($item['name']) ?></h4>
                                         <p><?= htmlspecialchars($item['description']) ?></p>
                                         <!-- Formulaire pour ajouter au panier -->
-                                        <form action="" method="POST">
+                                        <form action="panier-achat" method="POST">
                                             <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                             <button type="submit" name="add_to_cart" class="btn btn-order">
                                                 <span class="bi-cart-fill"></span> Ajouter au panier
