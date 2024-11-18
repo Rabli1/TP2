@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 if (isset($_SESSION['selected_item_id'])) {
     $id = $_SESSION['selected_item_id'];
 } else {
-    die('Erreur : Aucun ID valide fourni.');
+    die('Erreur : ID invalide.');
 }
 
 $item = itemsGetById($pdo, $id);
 if (!$item) {
-    die('Erreur : L\'item demandé n\'existe pas.');
+    die('Erreur : ID introuvable');
 }
 
 $categories = CategoryGetAll($pdo);
