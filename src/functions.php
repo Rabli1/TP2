@@ -1,10 +1,11 @@
 <?php
-function uriPath() : string{
+function uriPath(): string
+{
 
     $url = $_SERVER['REQUEST_URI'];
 
     $urlParts = parse_url($url);
-    
+
     return $urlParts['path'];
 
 }
@@ -28,7 +29,11 @@ function routeToController(string $path): void
 
     if (!$validRouteController) {
         error_log("Route invalide : " . $path);
+<<<<<<< HEAD
         //require __DIR__ . '/../views/page-not-found.php';
+=======
+        //require views/page-not-found.php;
+>>>>>>> 9235782d2a2ffdc2f185a84a57e35de553d0a353
     }
 }
 
@@ -71,8 +76,6 @@ function addToCart()
         if (!in_array($itemId, $_SESSION['cart'])) {
             $_SESSION['cart'][] = $itemId;
             $message = "Article ajouté au panier !";
-        } else {
-            $message = "Cet article est déjà dans le panier.";
         }
     } else {
         $message = "ID d'article invalide.";

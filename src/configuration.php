@@ -7,7 +7,7 @@ const ROUTES = [
     '/items-delete' => 'items-delete', // Fichier : controllers/items-delete.php
     '/items-add' => 'items-add', // Fichier : controllers/items-add.php
     '/items' => 'list-items', // Fichier : controllers/list-items.php
-    '/panier-achat' => 'panier-achat', // Fichier : controllers/panier-achat.php
+    '/panier' => 'panier-achat', // Fichier : controllers/panier-achat.php
     '/login' => 'login', // Fichier : controllers/login.php
 ];
 

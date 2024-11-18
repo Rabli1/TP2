@@ -1,7 +1,6 @@
 <?php
 require 'partials/head.php';
 require 'partials/header.php';
-session_start();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
@@ -66,7 +65,7 @@ session_start();
                                     <span class="bi-eye"></span> Voir
                                 </button>
                             </form>
-                            <form action="/items-edit" method="POST" style="display: inline;">
+                            <form action="/items-update" method="POST" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                 <button type="submit" class="btn btn-primary">
                                     <span class="bi-pencil"></span> Modifier
