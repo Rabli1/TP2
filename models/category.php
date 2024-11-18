@@ -38,4 +38,4 @@ function CategoryGetAll(PDO $pdo):array{
         throw new PDOException($e->getMessage(), $e->getCode());
 
     }
-
+}
