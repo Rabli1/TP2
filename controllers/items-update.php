@@ -3,7 +3,12 @@
 require 'src/database.php';
 require 'models/items.php';
 require 'models/category.php';
+<<<<<<< HEAD
 //session_start();
+=======
+session_start();
+var_dump($_SESSION);
+>>>>>>> 0877779bb114f7ce76e858a9669084b37283c6a5
 $pdo = databaseGetPDO(CONFIGURATIONS['database'],DB_PARAMS);
 $item = itemsGetById($pdo,2);
 $categories = CategoryGetAll($pdo);

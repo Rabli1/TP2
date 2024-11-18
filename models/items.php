@@ -19,24 +19,13 @@
     }
 
 
-function itemsGetById(PDO $pdo, int $id):array{
-
-    try{
-        $stm = $pdo->prepare('SELECT name,description,price,image,idCategory FROM items WHERE id=:id');
-
-        $stm->bindValue(":id", $id, PDO::PARAM_INT);
-
-        $stm->execute();
-
-        return $stm->fetch(PDO::FETCH_ASSOC);
-
-    } catch(PDOException $e){
-
-        throw new PDOException($e->getMessage(), $e->getCode());
-
+    function itemsGetById(PDO $pdo, int $id): ?array
+    {
+        $stmt = $pdo->prepare("SELECT * FROM items WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
-
-}
+    
 
 function UpdateItem(PDO $pdo,array $data ) : bool{
     
