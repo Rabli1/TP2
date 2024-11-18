@@ -28,7 +28,7 @@ function routeToController(string $path): void
 
     if (!$validRouteController) {
         error_log("Route invalide : " . $path);
-        require __DIR__ . '/../views/page-not-found.php';
+        //require __DIR__ . '/../views/page-not-found.php';
     }
 }
 

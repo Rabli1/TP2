@@ -59,6 +59,22 @@ function UpdateItem(PDO $pdo,array $data ) : bool{
     }   
 }
 
+function DeleteItem(PDO $pdo,int $id ) : bool{
+    
+    try{
+        $stm = $pdo->prepare('DELETE from items WHERE id = :id');
+        
+        $stm->bindValue(":id", $id, PDO::PARAM_INT);
+
+        return $stm->execute();
+        
+    } catch (PDOException $e) {
+                
+        throw new PDOException($e->getMessage(), $e->getCode());
+
+    }   
+}
+
 
 
 
