@@ -5,7 +5,7 @@ $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 session_start();
 $email = $_SESSION['email'];
 
-if (isset($_GET['logout'])) {
+if (isset($_POST['logout'])) {
     session_destroy();
 
     header('Location: /');
