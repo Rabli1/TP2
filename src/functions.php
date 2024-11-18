@@ -34,6 +34,7 @@ function routeToController(string $path): void
 
         //require views/page-not-found.php;
 
+        //require views/page-not-found.php;
     }
 }
 
