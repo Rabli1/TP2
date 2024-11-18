@@ -30,7 +30,6 @@ require 'partials/header.php';
                     </div>
                     <br>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-success"><span class="bi-pencil"></span> Modifier</button>
                         <a class="btn btn-primary" href="/items"><span class="bi-arrow-left"></span> Retour</a>
                     </div>
             </div>
