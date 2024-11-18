@@ -1,5 +1,5 @@
 <?php
-require_once 'src/database.php';
+require 'src/database.php';
 require_once 'src/functions.php';
 
 $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);

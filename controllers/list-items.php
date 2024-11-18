@@ -1,9 +1,15 @@
 <?php
 
-require_once 'src/database.php';
+require 'src/database.php';
 $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 session_start();
 $email = $_SESSION['email'];
+var_dump($_SESSION);
+if (!isset($email))
+{
+    session_destroy();
+    header('Location: /'); //Check si le email de la session est set, sinon rapporte l'index. Bloque d'accéder à la partie admin par l'url (sans se connecter)
+}
 
 if (isset($_GET['logout'])) {
     session_destroy();
