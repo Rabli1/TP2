@@ -1,7 +1,6 @@
 <?php
 require 'partials/head.php';
 require 'partials/header.php';
-session_start();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
