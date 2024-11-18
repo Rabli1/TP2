@@ -2,8 +2,9 @@
 require 'models/category.php';
 require 'models/items.php';
 require 'src/database.php';
+
 $pdo = databaseGetPDO(CONFIGURATIONS['database'],DB_PARAMS);
-$item = itemsGetById($pdo,1);
+$item = itemsGetById(pdo: $pdo, id: 1);
 $categories = getAllCategories($pdo);
 
 $itemsByCategory = [];

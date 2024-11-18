@@ -4,6 +4,7 @@ require 'src/database.php';
 require 'models/items.php';
 require 'models/category.php';
 session_start();
+var_dump($_SESSION);
 $pdo = databaseGetPDO(CONFIGURATIONS['database'],DB_PARAMS);
 $item = itemsGetById($pdo,2);
 $categories = CategoryGetAll($pdo);

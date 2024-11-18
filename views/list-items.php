@@ -59,19 +59,19 @@ require 'partials/header.php';
                         <td><?= number_format($item['price'], 2) ?></td>
                         <td><?= htmlspecialchars($item['category_name']) ?></td>
                         <td width=340>
-                            <form action="/items-view" method="POST" style="display: inline;">
+                            <form action="/items-view" method="GET" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                 <button type="submit" class="btn btn-secondary">
                                     <span class="bi-eye"></span> Voir
                                 </button>
                             </form>
-                            <form action="/items-update" method="POST" style="display: inline;">
+                            <form action="/items-update" method="GET" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                 <button type="submit" class="btn btn-primary">
                                     <span class="bi-pencil"></span> Modifier
                                 </button>
                             </form>
-                            <form action="/items-delete" method="POST" style="display: inline;">
+                            <form action="/items-delete" method="GET" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
                                 <button type="submit" class="btn btn-danger">
                                     <span class="bi-x"></span> Supprimer
