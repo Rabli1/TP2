@@ -2,8 +2,7 @@
      function getAllCategories(PDO $pdo) {
         $stmt = $pdo->query('SELECT * FROM categories');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
+     }
 
 
 function CategoryGetById(PDO $pdo, int $id):array{
@@ -40,4 +39,3 @@ function CategoryGetAll(PDO $pdo):array{
 
     }
 
-}
