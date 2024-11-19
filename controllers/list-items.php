@@ -11,14 +11,13 @@ if (!isset($email))
 }
 
 if (isset($_GET['logout'])) {
-    session_destroy();
 
-    header('Location: /');
+    header('Location: /logout-confirm');
     exit;
 }
 
 if (!isset($pdo)) {
-    die('Erreur : La connexion à la base de données n\'est pas configurée.');
+    die('Erreur : La connexion à la base de données est mal configurée.');
 }
 
 try {
@@ -36,7 +35,7 @@ try {
     $items = $query->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-    die('Erreur lors de la récupération des items : ' . $e->getMessage());
+    die('Erreur de récupération des items : ' . $e->getMessage());
 }
 
 require_once 'views/list-items.php';

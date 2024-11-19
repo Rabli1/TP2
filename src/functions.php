@@ -10,7 +10,18 @@ function uriPath(): string
 
 }
 
+function moveUploadedPicture(string $destinationPath = ''): string
+{
+    if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $filename = basename($_FILES['image']['name']);
+        $destination = $destinationPath . $filename;
 
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $destination)) {
+            return $filename; 
+        }
+    }
+    return '';
+}
 
 function routeToController(string $path): void
 {

@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p>Aucun item disponible pour cette catégorie.</p>
+                        <p class="login-error-message">Aucun item disponible pour cette catégorie.</p>
                     <?php endif; ?>
                 </div>
             </div>

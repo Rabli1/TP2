@@ -64,6 +64,24 @@ function DeleteItem(PDO $pdo,int $id ) : bool{
 
     }   
 }
+function getAllItems(PDO $pdo): array {
+    $stmt = $pdo->query('SELECT * FROM items');
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function addItem(PDO $pdo, array $item): bool {
+    $stmt = $pdo->prepare('
+        INSERT INTO items (name, description, price, image, idCategory)
+        VALUES (:name, :description, :price, :image, :idCategory)
+    ');
+
+    return $stmt->execute([
+        ':name' => $item['name'],
+        ':description' => $item['description'],
+        ':price' => $item['price'],
+        ':image' => $item['image'],
+        ':idCategory' => $item['idCategory'],
+    ]);
+}
 
 
 

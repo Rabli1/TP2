@@ -10,6 +10,7 @@ const ROUTES = [
     '/panier' => 'panier-achat', // Fichier : controllers/panier-achat.php
     '/login' => 'login', // Fichier : controllers/login.php
     '/checkout' => 'checkout',  // Fichier : controllers/checkout.php
+    '/logout' => 'logout-confirm', // Fichier : controllers/logout-confirm.php
 ];
 
 

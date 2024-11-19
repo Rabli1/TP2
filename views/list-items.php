@@ -20,7 +20,7 @@ require 'partials/header.php';
 
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="?logout=1">
+                            <a class="dropdown-item" href="/logout">
                                 <span class="container mr-1"><i
                                         class="fa-solid fa-right-from-bracket fa-lg"></i></span>Déconnexion
                             </a>
@@ -59,8 +59,8 @@ require 'partials/header.php';
                         <td><?= number_format($item['price'], 2) ?></td>
                         <td><?= htmlspecialchars($item['category_name']) ?></td>
                         <td width=340>
-                            <form action="/items-view" method="GET" style="display: inline;">
-                                <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                            <form action="/items-view" method="POST" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($item['id']) ?>">
                                 <button type="submit" class="btn btn-secondary">
                                     <span class="bi-eye"></span> Voir
                                 </button>
@@ -73,12 +73,14 @@ require 'partials/header.php';
                             </form>
 
 
-                            <form action="/items-delete" method="GET" style="display: inline;">
-                                <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                            <form action="/items-delete" method="POST" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($item['id']) ?>">
                                 <button type="submit" class="btn btn-danger">
                                     <span class="bi-x"></span> Supprimer
                                 </button>
                             </form>
+
+
                         </td>
                     </tr>
                 <?php endforeach; ?>
