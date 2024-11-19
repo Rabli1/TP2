@@ -63,28 +63,18 @@ function redirect(string $path): void
 
 }
 
-function addToCart()
-{
-    session_start();
-
+function addToCart() {
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    if (isset($_POST['id']) && is_numeric($_POST['id'])) {
-        $itemId = (int) $_POST['id'];
+    $id = (int)$_POST['id']; 
 
-        if (!in_array($itemId, $_SESSION['cart'])) {
-            $_SESSION['cart'][] = $itemId;
-            $message = "Article ajouté au panier !";
-        }
-    } else {
-        $message = "ID d'article invalide.";
+    if (!in_array($id, $_SESSION['cart'])) {
+        $_SESSION['cart'][] = $id; 
     }
-
-    header("Location: " . $_SERVER['PHP_SELF'] . "?message=" . urlencode($message));
-    exit;
 }
+
 function userLetThrough(PDO $pdo, string $email, string $password): bool
 {
     $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');
@@ -105,4 +95,3 @@ function userLetThrough(PDO $pdo, string $email, string $password): bool
 
     return false;
 }
-

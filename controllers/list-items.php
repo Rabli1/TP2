@@ -4,7 +4,6 @@ require 'src/database.php';
 $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 session_start();
 $email = $_SESSION['email'];
-var_dump($_SESSION);
 if (!isset($email))
 {
     session_destroy();

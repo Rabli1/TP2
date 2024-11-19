@@ -1,91 +1,73 @@
-<? 
-require 'partials/head.php';
-require 'partials/header.php';
-?>
-
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <button id="nav-toggle-button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsMain">
-            <ul class="container nav nav-pills d-flex justify-content-center">
-                <?php if (!empty($categories)): ?>
-                    <?php foreach ($categories as $index => $category): ?>
-                        <li class="nav-item">
-                            <a class="nav-link <?= $index === 0 ? 'active' : '' ?>" data-bs-toggle="pill" href="#tab<?= $category['id'] ?>">
-                                <?= htmlspecialchars($category['name']) ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <li class="nav-item"><span class="nav-link">Aucune catégorie disponible</span></li>
-                <?php endif; ?>
-            </ul>                        
-        </div>
-
-        <!-- Boutons à droite -->
-        <ul class="container nav navbar-nav justify-content-end">
-            <!-- Bouton Connexion -->
-            <li class="nav-item">
-                <a class="nav-link nav-menu" href="login" title="Connexion">
-                    <i class="fa-solid fa-right-to-bracket fa-lg"></i> Connexion
-                </a>
-            </li>
-            <div class="cart-wrapper">
-                <li class="nav-item">
-                    <a class="nav-link nav-menu" href="panier" title="Panier d'achat">
-                        <i class="fa-solid fa-cart-shopping fa-lg"></i> <!-- Icône du panier -->
-                        <div class="cart-counter" id="cart-counter"><?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?></div> <!-- Compteur -->
-                    </a>
-                </li> 
-            </div>
-        </ul>
-    </div>
-</nav>
+<?php require 'partials/head.php'; ?>
+<?php require 'partials/header.php'; ?>
 
 <main>
-    <?php if ($message): ?>
-        <div class="alert alert-success">
-            <?= $message ?>
-        </div>
-    <?php endif; ?>
-
-    <div class="tab-content">
-        <?php if (!empty($categories)): ?>
-            <?php foreach ($categories as $index => $category): ?>
-                <div class="tab-pane <?= $index === 0 ? 'active' : '' ?>" id="tab<?= $category['id'] ?>" role="tabpanel">
-                    <div class="row">
-                        <?php if (!empty($itemsByCategory[$category['id']])): ?>
-                            <?php foreach ($itemsByCategory[$category['id']] as $item): ?>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="img-thumbnail">
-                                        <img src="public/uploads/<?= htmlspecialchars($item['image']) ?>" class="img-fluid" alt="<?= htmlspecialchars($item['name']) ?>">
-                                        <div class="price"><?= number_format($item['price'], 2) ?> $</div>
-                                        <div class="caption">
-                                            <h4><?= htmlspecialchars($item['name']) ?></h4>
-                                            <p><?= htmlspecialchars($item['description']) ?></p>
-                                            <!-- Formulaire pour ajouter au panier -->
-                                            <form action="panier-achat" method="POST">
-                                                <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                                <button type="submit" name="add_to_cart" class="btn btn-order">
-                                                    <span class="bi-cart-fill"></span> Ajouter au panier
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <p>Aucun item disponible pour cette catégorie.</p>
-                        <?php endif; ?>
-                    </div>
+    <div class="container-fluid row align-items-start">
+        <div class="col-8">
+            <div class="container row admin">
+                <h1><strong>Panier d'achats</strong></h1>
+                <div class="mb-3">
+                    <!-- Bouton Accueil -->
+                    <a href="/" class="btn btn-primary">Accueil</a>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Aucune catégorie disponible pour le moment.</p>
-        <?php endif; ?>
+                <hr>
+                <?php if (!empty($cartItems)): ?>
+                    <?php foreach ($cartItems as $item): ?>
+                        <div class="row align-items-center mb-3">
+                            <!-- Image de l'article -->
+                            <div class="col-4">
+                                <img src="public/uploads/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="cart-detail-image img-fluid">
+                            </div>
+
+                            <!-- Détails de l'article -->
+                            <div class="col-5">
+                                <h4><?= htmlspecialchars($item['name']) ?></h4>
+                                <p><?= htmlspecialchars($item['description']) ?></p>
+                                <form method="POST" action="">
+                                    <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                                    <label>Quantité:</label>
+                                    <select name="quantity" class="form-select w-50">
+                                        <?php for ($i = 1; $i <= 10; $i++): ?>
+                                            <option value="<?= $i ?>" <?= $i == $item['quantity'] ? 'selected' : '' ?>>
+                                                <?= $i ?>
+                                            </option>
+                                        <?php endfor; ?>
+                                    </select>
+                                    <div class="mt-2">
+                                        <button type="submit" name="update_quantity" class="btn btn-outline-secondary">MAJ</button>
+                                        <button type="submit" name="remove_item" class="btn btn-outline-danger">Supprimer</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Prix unitaire -->
+                            <div class="col-3 text-right">
+                                <h5><?= number_format($item['price'], 2) ?> $</h5>
+                            </div>
+                        </div>
+                        <hr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Votre panier est vide.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Résumé de la commande -->
+        <div class="col-4">
+            <div class="row admin">
+                <h3>Résumé de la commande</h3>
+                <hr>
+                <h4>Sous-total (<span id="sub-total-items-count">
+                    <?= array_reduce($cartItems, function ($carry, $item) {
+                        return $carry + $item['quantity'];
+                    }, 0) ?>
+                </span> items): 
+                <strong><span id="sub-total-amount-formatted"><?= number_format($subTotal, 2) ?> $</span></strong>
+                </h4>
+                <a href="/checkout" class="btn cart-proceed-to-checkout">Passer à la caisse</a>
+            </div>
+        </div>
     </div>
 </main>
 

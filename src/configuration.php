@@ -9,6 +9,7 @@ const ROUTES = [
     '/items' => 'list-items', // Fichier : controllers/list-items.php
     '/panier' => 'panier-achat', // Fichier : controllers/panier-achat.php
     '/login' => 'login', // Fichier : controllers/login.php
+    '/checkout' => 'checkout',  // Fichier : controllers/checkout.php
 ];
 
 

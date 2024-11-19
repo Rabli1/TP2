@@ -66,11 +66,12 @@ require 'partials/header.php';
                                 </button>
                             </form>
                             <form action="/items-update" method="POST" style="display: inline;">
-                                <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($item['id']) ?>">
                                 <button type="submit" class="btn btn-primary">
                                     <span class="bi-pencil"></span> Modifier
                                 </button>
                             </form>
+
 
                             <form action="/items-delete" method="GET" style="display: inline;">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
