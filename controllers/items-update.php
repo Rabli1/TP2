@@ -5,19 +5,19 @@ require 'models/category.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-    $_SESSION['selected_item_id'] = (int)$_POST['id'];
+    $_SESSION['selected_item_id'] = (int) $_POST['id'];
 }
 
 if (isset($_SESSION['selected_item_id'])) {
     $id = $_SESSION['selected_item_id'];
 } else {
-    die('Erreur : ID invalide.');
+    die('ID invalide.');
 }
 
 $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 $item = itemsGetById($pdo, $id);
 if (!$item) {
-    die('Erreur : Item inexistant.');
+    die('Item inexistant.');
 }
 
 $categories = CategoryGetAll($pdo);

@@ -4,7 +4,7 @@ require_once 'src/functions.php';
 
 $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 
-$emailFromCookie = $_COOKIE['email'] ?? ''; 
+$emailFromCookie = $_COOKIE['email'] ?? '';
 $rememberMeChecked = isset($_COOKIE['remember_me']) && $_COOKIE['remember_me'] === '1';
 $error = '';
 
@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         setcookie("email", $email, $expire->getTimestamp(), "/", "", isset($_SERVER['HTTPS']), true);
         setcookie("remember_me", $rememberMe, $expire->getTimestamp(), "/", "", isset($_SERVER['HTTPS']), true);
     } else {
-        setcookie("email", "", time() - 3600, "/");
-        setcookie("remember_me", "", time() - 3600, "/");
+        setcookie("email", "", time() - 1, "/"); //Cookie mis à un temps passé pour le supprimer
+        setcookie("remember_me", "", time() - 1, "/");
     }
 
     if (userLetThrough($pdo, $email, $password)) {

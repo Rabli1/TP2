@@ -3,7 +3,7 @@
 require 'src/database.php';
 require 'models/items.php';
 require 'models/category.php';
-require_once 'src/functions.php';
+require_once 'src/functions.php'; #Ne peut pas definir une des fonction deux fois, donc require_once
 $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 
 $categories = getAllCategories($pdo);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         if (addItem($pdo, $newItem)) {
-            $itemAdded = true; 
+            $itemAdded = true;
             $name = $description = $price = $image = '';
             $idCategory = null;
         }

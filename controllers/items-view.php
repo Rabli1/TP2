@@ -4,7 +4,7 @@ require 'models/items.php';
 require 'models/category.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-    $id = (int)$_POST['id'];
+    $id = (int) $_POST['id'];
     $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
     $item = itemsGetById($pdo, $id);
 
@@ -19,6 +19,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $categorie = CategoryGetById($pdo, $item['idCategory'])['name'];
 
     require 'views/items-view.php';
-} else {
-    die('Erreur : Requête invalide.');
 }

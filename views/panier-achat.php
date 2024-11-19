@@ -16,7 +16,8 @@
                         <div class="row align-items-center mb-3">
                             <!-- Image de l'article -->
                             <div class="col-4">
-                                <img src="public/uploads/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="cart-detail-image img-fluid">
+                                <img src="public/uploads/<?= htmlspecialchars($item['image']) ?>"
+                                    alt="<?= htmlspecialchars($item['name']) ?>" class="cart-detail-image img-fluid">
                             </div>
 
                             <!-- Détails de l'article -->
@@ -34,8 +35,10 @@
                                         <?php endfor; ?>
                                     </select>
                                     <div class="mt-2">
-                                        <button type="submit" name="update_quantity" class="btn btn-outline-secondary">MAJ</button>
-                                        <button type="submit" name="remove_item" class="btn btn-outline-danger">Supprimer</button>
+                                        <button type="submit" name="update_quantity"
+                                            class="btn btn-outline-secondary">MAJ</button>
+                                        <button type="submit" name="remove_item"
+                                            class="btn btn-outline-danger">Supprimer</button>
                                     </div>
                                 </form>
                             </div>
@@ -59,11 +62,11 @@
                 <h3>Résumé de la commande</h3>
                 <hr>
                 <h4>Sous-total (<span id="sub-total-items-count">
-                    <?= array_reduce($cartItems, function ($carry, $item) {
-                        return $carry + $item['quantity'];
-                    }, 0) ?>
-                </span> items): 
-                <strong><span id="sub-total-amount-formatted"><?= number_format($subTotal, 2) ?> $</span></strong>
+                        <?= array_reduce($cartItems, function ($total, $item) {
+                            return $total + $item['quantity'];
+                        }, 0) ?>
+                    </span> items):
+                    <strong><span id="sub-total-amount-formatted"><?= number_format($subTotal, 2) ?> $</span></strong>
                 </h4>
                 <a href="/checkout" class="btn cart-proceed-to-checkout">Passer à la caisse</a>
             </div>

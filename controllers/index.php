@@ -8,7 +8,7 @@ $pdo = databaseGetPDO(CONFIGURATIONS['database'], DB_PARAMS);
 
 $categories = getAllCategories($pdo);
 
-$allItems = getAllItems($pdo); 
+$allItems = getAllItems($pdo);
 
 $itemsByCategory = [];
 foreach ($categories as $category) {
